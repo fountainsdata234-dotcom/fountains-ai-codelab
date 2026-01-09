@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profile Settings | Fountains AI CodeLab</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-storage-compat.js"></script>
+
+    <style>
+      :root {
+        --bg: #fdfdfd;
+        --card: #ffffff;
+        --text: #0f172a;
+        --accent: #3b82f6;
+        --border: rgba(0, 0, 0, 0.06);
+      }
+      .dark-theme {
+        --bg: #020617;
+        --card: #0f172a;
+        --text: #f8fafc;
+        --border: rgba(255, 255, 255, 0.1);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family: "Plus Jakarta Sans", sans-serif;
+        transition: 0.4s;
+      }
+
+      .container {
+        max-width: 800px;
+        margin: 100px auto;
+        padding: 20px;
+      }
+      .glass-card {
+        background: var(--card);
+        border-radius: 20px;
+        padding: 40px;
+        border: 1px solid var(--border);
+        box-shadow: 0 30px 60px rgba(0, 0, 0, 0.05);
+        text-align: center;
+      }
+
+      /* AVATAR UPLOAD */
+      .avatar-box {
+        position: relative;
+        width: 150px;
+        height: 150px;
+        margin: 0 auto 30px;
+      }
+      #profile-img {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 5px solid var(--accent);
+      }
+
+      .upload-overlay {
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.6);
+        border-radius: 50%;
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        cursor: pointer;
+      }
+      .avatar-box:hover .upload-overlay {
+        display: flex;
+      }
+
+      /* PROGRESS BAR */
+      .progress-circle {
+        position: absolute;
+        top: -5px;
+        left: -5px;
+        width: 160px;
+        height: 160px;
+        display: none;
+      }
+
+      /* INPUTS */
+      .input-group {
+        text-align: left;
+        margin-bottom: 20px;
+      }
+      label {
+        font-weight: 800;
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        opacity: 0.6;
+        margin-bottom: 8px;
+        display: block;
+      }
+      input {
+        width: 100%;
+        padding: 15px;
+        border-radius: 12px;
+        border: 1px solid var(--border);
+        background: var(--bg);
+        color: var(--text);
+        font-weight: 600;
+        outline: none;
+        transition: 0.3s;
+      }
+      input:focus {
+        border-color: var(--accent);
+      }
+
+      .save-btn {
+        background: var(--accent);
+        color: white;
+        border: none;
+        padding: 15px 40px;
+        border-radius: 12px;
+        font-weight: 800;
+        cursor: pointer;
+        width: 100%;
+        transition: 0.3s;
+        margin-top: 10px;
+      }
+      .save-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3);
+      }
+
+      /* PROJECT TRACKER */
+      .tracker {
+        margin-top: 50px;
+        text-align: left;
+      }
+      .track-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px;
+        background: var(--card);
+        border-radius: 18px;
+        border: 1px solid var(--border);
+        margin-bottom: 15px;
+      }
+      .score-pill {
+        background: var(--accent);
+        color: white;
+        padding: 5px 15px;
+        border-radius: 50px;
+        font-weight: 800;
+        font-size: 0.9rem;
+      }
+
+      .back-btn {
+        position: fixed;
+        top: 30px;
+        left: 30px;
+        background: var(--card);
+        padding: 10px 20px;
+        border-radius: 50px;
+        border: 1px solid var(--border);
+        text-decoration: none;
+        color: var(--text);
+        font-weight: 700;
+        z-index: 100;
+      }
+      .logout-btn {
+        color: #ef4444;
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-weight: 700;
+        margin-top: 30px;
+      }
+
+      @media (max-width: 768px) {
+        .container {
+          margin: 90px auto 30px;
+          padding: 15px;
+        }
+        .glass-card {
+          padding: 25px 20px;
+          border-radius: 16px;
+        }
+        .avatar-box {
+          width: 100px;
+          height: 100px;
+          margin-bottom: 20px;
+        }
+        .input-group {
+          margin-bottom: 15px;
+        }
+        input {
+          padding: 12px;
+          font-size: 0.9rem;
+        }
+        .save-btn {
+          padding: 12px;
+          font-size: 0.95rem;
+        }
+        .track-item {
+          padding: 15px;
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 10px;
+        }
+        .score-pill {
+          align-self: flex-start;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <a href="dashboard.html" class="back-btn">← Back to Lab</a>
+
+    <div class="container gsap-reveal">
+      <div class="glass-card">
+        <div class="avatar-box">
+          <img id="profile-img" src="" alt="User Avatar" />
+          <!-- Shuffle Button -->
+          <div class="upload-overlay" id="upload-btn" onclick="shuffleAvatar()">
+            <span style="font-size: 2rem">🎲</span>
+            <span style="font-weight: 700">Shuffle</span>
+          </div>
+          <div
+            id="upload-status"
+            style="
+              position: absolute;
+              bottom: -25px;
+              left: 0;
+              width: 100%;
+              font-size: 0.7rem;
+              font-weight: 800;
+              color: var(--accent);
+            "
+          ></div>
+        </div>
+
+        <h2
+          id="user-role-badge"
+          style="
+            font-size: 0.7rem;
+            background: rgba(59, 130, 246, 0.1);
+            color: var(--accent);
+            padding: 4px 12px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-bottom: 10px;
+          "
+        >
+          STUDENT PROFILE
+        </h2>
+
+        <div class="input-group">
+          <label>Display Username</label>
+          <input type="text" id="username-input" placeholder="Enter Nickname" />
+        </div>
+
+        <div class="input-group">
+          <label>Email Address (Immutable)</label>
+          <input type="text" id="email-display" disabled style="opacity: 0.5" />
+        </div>
+
+        <button class="save-btn" id="save-settings" onclick="saveSettings()">
+          Save Profile Changes
+        </button>
+        <button class="logout-btn" onclick="auth.signOut()">
+          Logout Account
+        </button>
+
+        <!-- PROJECT TRACKER -->
+        <div class="tracker">
+          <h3 style="font-weight: 800; margin-bottom: 20px">
+            My Graded Projects
+          </h3>
+          <div id="project-list">
+            <!-- Loaded dynamically from submissions -->
+            <p style="opacity: 0.5; font-size: 0.8rem">
+              No projects graded yet.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // 1. FIREBASE CONFIG
+      const firebaseConfig = {
+        apiKey: "AIzaSyC6i5OswlTLw69VNR64b7fIOaiYQXX_bSA",
+        authDomain: "fountains-ai-codelab.firebaseapp.com",
+        projectId: "fountains-ai-codelab",
+        storageBucket: "fountains-ai-codelab.firebasestorage.app",
+        measurementId: "G-WJ4JWB5GNB",
+      };
+
+      if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
+      const auth = firebase.auth();
+      const db = firebase.firestore();
+      const storage = firebase.storage();
+
+      // 2. LOAD PROFILE
+      auth.onAuthStateChanged((user) => {
+        if (user) {
+          const isGoogle = user.providerData[0].providerId === "google.com";
+          document.getElementById("email-display").value = user.email;
+
+          // Sync UI with Firestore Real-time
+          db.collection("users")
+            .doc(user.uid)
+            .onSnapshot((doc) => {
+              const data = doc.data() || {};
+              const nickname = data.username || user.displayName || "Student";
+              document.getElementById("username-input").value = nickname;
+
+              // Unique Avatar Logic
+              document.getElementById("profile-img").src =
+                data.avatar ||
+                user.photoURL ||
+                `https://api.dicebear.com/7.x/avataaars/svg?seed=${user.uid}`;
+
+              // If Google User, block photo editing (Google rules)
+              if (isGoogle) {
+                document.getElementById("upload-btn").style.pointerEvents =
+                  "none";
+                document.getElementById("upload-btn").innerHTML =
+                  "<span>Managed by Google</span>";
+              }
+            });
+
+          loadScores(user.email);
+        } else {
+          window.location.href = "index.html";
+        }
+      });
+
+      // 3. AVATAR SHUFFLE LOGIC
+      async function shuffleAvatar() {
+        const user = auth.currentUser;
+        if (!user) return;
+
+        const status = document.getElementById("upload-status");
+        status.innerText = "SHUFFLING...";
+
+        // Generate unique seed using UID + Timestamp + Random
+        const seed =
+          user.uid + "_" + Date.now() + "_" + Math.floor(Math.random() * 1000);
+        const newAvatar = `https://api.dicebear.com/7.x/avataaars/svg?seed=${seed}`;
+
+        try {
+          await db
+            .collection("users")
+            .doc(user.uid)
+            .update({ avatar: newAvatar });
+          status.innerText = "UPDATED!";
+          setTimeout(() => (status.innerText = ""), 2000);
+        } catch (err) {
+          console.error(err);
+          status.innerText = "ERROR";
+          alert("Failed to update avatar");
+        }
+      }
+
+      // 4. SAVE USERNAME
+      async function saveSettings() {
+        const user = auth.currentUser;
+        const newName = document.getElementById("username-input").value;
+        if (user && newName) {
+          try {
+            await db
+              .collection("users")
+              .doc(user.uid)
+              .update({ username: newName });
+            alert("Profile saved successfully!");
+          } catch (e) {
+            alert("Error saving profile: " + e.message);
+          }
+        }
+      }
+
+      // 5. PROJECT TRACKER LOGIC
+      function loadScores(email) {
+        db.collection("submissions")
+          .where("studentEmail", "==", email)
+          .onSnapshot((snap) => {
+            const container = document.getElementById("project-list");
+            if (snap.empty) return;
+            container.innerHTML = "";
+            snap.forEach((doc) => {
+              const s = doc.data();
+              container.innerHTML += `
+                        <div class="track-item">
+                            <div>
+                                <strong style="display:block">${
+                                  s.moduleTitle || "Project Submission"
+                                }</strong>
+                                <small style="opacity:0.5">${new Date(
+                                  s.timestamp?.toDate()
+                                ).toLocaleDateString()}</small>
+                            </div>
+                            <div class="score-pill">${s.score}%</div>
+                        </div>
+                    `;
+            });
+          });
+      }
+
+      // Animations
+      gsap.from(".gsap-reveal", {
+        y: 30,
+        opacity: 0,
+        duration: 1,
+        ease: "power4.out",
+      });
+      if (localStorage.getItem("fnt-theme") === "dark")
+        document.body.classList.add("dark-theme");
+    </script>
+  </body>
+</html>

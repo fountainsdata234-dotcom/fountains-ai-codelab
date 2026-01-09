@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Methodology | Fountains AI CodeLab</title>
+    <link rel="stylesheet" href="methods.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-storage-compat.js"></script>
+  </head>
+  <body class="light-theme">
+    <nav class="navbar">
+      <div class="nav-container">
+        <a href="dashboard.html" class="brand">
+          <img src="logo.png" alt="Logo" class="logo-img" />
+          <h2>
+            FOUNTAINS
+            <span class="wave-text"
+              ><span>A</span><span>I</span><span>&nbsp;</span><span>C</span
+              ><span>o</span><span>d</span><span>e</span><span>L</span
+              ><span>a</span><span>b</span></span
+            >
+          </h2>
+        </a>
+
+        <ul class="nav-links">
+          <li><a href="dashboard.html">Home</a></li>
+          <li><a href="lessons.html">Lessons</a></li>
+          <li><a href="methods.html" class="active">Methods</a></li>
+          <li><a href="projects.html">Gallery</a></li>
+        </ul>
+
+        <div class="nav-btns">
+          <button id="themeToggle" class="icon-btn">🌓</button>
+
+          <!-- Dynamic Profile Link -->
+          <a
+            href="profile.html"
+            style="
+              text-decoration: none;
+              display: flex;
+              align-items: center;
+              gap: 10px;
+            "
+          >
+            <div class="profile-circle">
+              <img
+                id="nav-user-img"
+                src="https://api.dicebear.com/7.x/avataaars/svg?seed=Guest"
+                alt="Profile"
+                style="width: 100%; height: 100%; object-fit: cover"
+              />
+            </div>
+          </a>
+
+          <button class="hamburger" id="menuBtn">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Mobile Navigation -->
+    <div class="mobile-drawer" id="mobileMenu">
+      <div
+        style="
+          display: flex;
+          align-items: center;
+          gap: 15px;
+          margin-bottom: 10px;
+        "
+      >
+        <div
+          class="profile-circle"
+          style="width: 50px; height: 50px; border-color: var(--accent)"
+        >
+          <img
+            id="mobile-user-img"
+            src="https://api.dicebear.com/7.x/avataaars/svg?seed=Felix"
+            alt="Profile"
+          />
+        </div>
+        <span id="mobile-user-name" style="font-weight: 700; font-size: 1.2rem"
+          >Student</span
+        >
+      </div>
+      <a
+        href="dashboard.html"
+        style="
+          text-decoration: none;
+          color: var(--text-primary);
+          font-weight: 700;
+          font-size: 1.2rem;
+        "
+        >Home</a
+      >
+      <a
+        href="lesson.html"
+        style="
+          text-decoration: none;
+          color: var(--text-primary);
+          font-weight: 700;
+          font-size: 1.2rem;
+        "
+        >Lessons</a
+      >
+      <a
+        href="methods.html"
+        style="
+          text-decoration: none;
+          color: var(--text-primary);
+          font-weight: 700;
+          font-size: 1.2rem;
+        "
+        >Methods</a
+      >
+      <a
+        href="projects.html"
+        style="
+          text-decoration: none;
+          color: var(--text-primary);
+          font-weight: 700;
+          font-size: 1.2rem;
+        "
+        >Projects</a
+      >
+      <hr style="border: 0; border-top: 1px solid var(--border)" />
+      <button
+        id="themeToggleMobile"
+        class="icon-btn"
+        style="
+          margin: 0;
+          width: 100%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: 10px;
+          font-size: 1rem;
+          font-weight: 700;
+        "
+      >
+        <span>Switch Theme</span> 🌓
+      </button>
+    </div>
+
+    <main class="methods-wrapper">
+      <header class="methods-hero">
+        <div class="gsap-reveal">
+          <span class="method-badge">The Fountains Manifesto</span>
+          <h1>
+            The Science of <br /><span class="gradient-text"
+              >AI Orchestration</span
+            >
+          </h1>
+          <p>
+            AI is a powerful instrument, but you are the conductor. These are
+            the 7 core principles discovered at Fountains Data Technology for
+            building high-end software with artificial intelligence.
+          </p>
+        </div>
+      </header>
+
+      <section class="methods-grid" id="methods-container">
+        <!-- Methods will be injected or hardcoded for SEO/Performance -->
+        <div class="method-card gsap-reveal">
+          <div class="method-num">01</div>
+          <h3>The Architectural Blueprint</h3>
+          <p>
+            Before touching an AI tool, you must have a crystal-clear
+            specification of your end goal. AI thrives on context but fails on
+            ambiguity. Define your features, user flow, and visual style first.
+          </p>
+          <div class="expand-content">
+            <strong>Pro Tip:</strong> Write a "System Prompt" document that
+            describes your project as if you were explaining it to a human
+            junior developer.
+          </div>
+        </div>
+
+        <div class="method-card gsap-reveal">
+          <div class="method-num">02</div>
+          <h3>Code Literacy & Command</h3>
+          <p>
+            You cannot lead what you do not understand. Deepen your knowledge in
+            HTML, CSS, and JavaScript. This allows you to speak "technical
+            language" to the AI, ensuring the code it generates is efficient and
+            clean.
+          </p>
+          <div class="expand-content">
+            <strong>Pro Tip:</strong> When the AI gives you code, read every
+            line. If you don't understand a function, ask the AI to explain it.
+            Never copy-paste blindly.
+          </div>
+        </div>
+
+        <div class="method-card gsap-reveal">
+          <div class="method-num">03</div>
+          <h3>The Multi-Model Ecosystem</h3>
+          <p>
+            Don't be loyal to a single tool. Claude might be better at high-end
+            UI/CSS, while GPT-4o might excel at complex Logic, and Perplexity
+            for real-time API research. Use the right tool for the right task.
+          </p>
+          <div class="expand-content">
+            <strong>Pro Tip:</strong> If one AI is stuck in a loop, move the
+            code to another AI. A "fresh pair of digital eyes" often solves the
+            bug instantly.
+          </div>
+        </div>
+
+        <div class="method-card gsap-reveal">
+          <div class="method-num">04</div>
+          <h3>Iterative Resilience</h3>
+          <p>
+            AI can be frustrating, hallucinate, or give broken code. Persistence
+            is the key. Development with AI is not a "one-click" miracle; it is
+            a conversation. Stay calm and refine the output.
+          </p>
+          <div class="expand-content">
+            <strong>Pro Tip:</strong> When the AI fails, don't just say "it's
+            broken." Copy the error message from your console and feed it back
+            to the AI.
+          </div>
+        </div>
+
+        <div class="method-card gsap-reveal">
+          <div class="method-num">05</div>
+          <h3>Contextual Precision</h3>
+          <p>
+            Words are your code. Using precise expressions like "State
+            Management," "Responsive Flexbox," or "Asynchronous Fetch" directs
+            the AI to use modern industry standards rather than outdated
+            methods.
+          </p>
+          <div class="expand-content">
+            <strong>Pro Tip:</strong> Use "Negative Prompting." Tell the AI what
+            NOT to do (e.g., "Do not use external libraries like Bootstrap; use
+            raw CSS Grid").
+          </div>
+        </div>
+
+        <div class="method-card gsap-reveal">
+          <div class="method-num">06</div>
+          <h3>Atomic Development</h3>
+          <p>
+            Never ask an AI to build a "whole website" in one prompt. Break your
+            project into tiny "atoms" (buttons, navbars, cards). Build them
+            perfectly one by one, then assemble the molecule.
+          </p>
+          <div class="expand-content">
+            <strong>Pro Tip:</strong> This prevents the AI from hitting "token
+            limits" and ensures the highest code quality for each component.
+          </div>
+        </div>
+
+        <div class="method-card gsap-reveal">
+          <div class="method-num">07</div>
+          <h3>The Verification Protocol</h3>
+          <p>
+            Always maintain the "Human-in-the-loop" status. AI can write code
+            that looks correct but is insecure or slow. You are the final judge
+            of quality, security, and performance.
+          </p>
+          <div class="expand-content">
+            <strong>Pro Tip:</strong> Test your site on mobile and across
+            different browsers manually. AI cannot "feel" the user experience
+            yet.
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="methods.js"></script>
+    <script>
+      // FIREBASE INIT
+      const firebaseConfig = {
+        apiKey: "AIzaSyC6i5OswlTLw69VNR64b7fIOaiYQXX_bSA",
+        authDomain: "fountains-ai-codelab.firebaseapp.com",
+        projectId: "fountains-ai-codelab",
+        storageBucket: "fountains-ai-codelab.firebasestorage.app",
+        messagingSenderId: "447605557154",
+        appId: "1:447605557154:web:4475a21963961b5e1514fb",
+        measurementId: "G-WJ4JWB5GNB",
+      };
+      if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
+      const auth = firebase.auth();
+      const db = firebase.firestore();
+
+      auth.onAuthStateChanged((user) => {
+        if (user) {
+          db.collection("users")
+            .doc(user.uid)
+            .onSnapshot((doc) => {
+              const data = doc.data() || {};
+              const avatar =
+                data.avatar ||
+                user.photoURL ||
+                `https://api.dicebear.com/7.x/avataaars/svg?seed=${user.uid}`;
+              const name = data.username || user.displayName || "Student";
+              if (document.getElementById("nav-user-img"))
+                document.getElementById("nav-user-img").src = avatar;
+              if (document.getElementById("mobile-user-img"))
+                document.getElementById("mobile-user-img").src = avatar;
+              if (document.getElementById("mobile-user-name"))
+                document.getElementById("mobile-user-name").innerText = name;
+            });
+        }
+      });
+    </script>
+  </body>
+</html>

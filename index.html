@@ -1,0 +1,448 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gateway | Fountains AI CodeLab</title>
+    <!-- SEO Meta Tags -->
+    <meta
+      name="description"
+      content="Fountains AI CodeLab: Master AI-powered software engineering. Learn to build professional websites using ChatGPT, Gemini, and Google AI Studio."
+    />
+    <meta
+      name="keywords"
+      content="AI coding, web development, software engineering, ChatGPT, Gemini Code Assist, Google AI Studio, coding lessons, Fountains AI, Ai Lab, AI orchestration, programming with AI"
+    />
+    <meta name="author" content="Fountains Data Technology" />
+    <meta
+      property="og:title"
+      content="Fountains AI CodeLab - The Era of AI Orchestration"
+    />
+    <meta
+      property="og:description"
+      content="Empowering the next generation of software engineers with Artificial Intelligence."
+    />
+    <meta
+      property="og:image"
+      content="https://ik.imagekit.io/dking/grok_video_2026-01-13-12-17-00.mp4"
+    />
+    <!-- Favicon -->
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="favicon/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="favicon/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="favicon/favicon-16x16.png"
+    />
+    <link rel="manifest" href="favicon/site.webmanifest" />
+
+    <!-- External Assets -->
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+
+    <style>
+      @media (max-width: 768px) {
+        .logo-header img {
+          height: 50px;
+        }
+        .logo-header h1 {
+          font-size: 1.5rem;
+        }
+        .glass-card {
+          padding: 30px 20px;
+          width: 95%;
+        }
+        .input-group input {
+          padding: 12px;
+          font-size: 0.9rem;
+        }
+        .btn-primary {
+          padding: 12px;
+          font-size: 0.95rem;
+        }
+      }
+      .logo-img {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-bottom: 20px;
+        border: 2px solid var(--primary);
+        box-shadow: 0 0 20px var(--primary-glow);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Live Background Elements -->
+    <canvas id="spider-canvas"></canvas>
+    <div class="glass-shapes">
+      <div class="shape shape-1"></div>
+      <div class="shape shape-2"></div>
+      <div class="shape shape-3"></div>
+    </div>
+
+    <!-- ROBOT BACKGROUND -->
+    <div class="robot-background-container">
+      <div id="robot-scene">
+        <svg
+          viewBox="0 0 240 280"
+          xmlns="http://www.w3.org/2000/svg"
+          id="robot-svg"
+        >
+          <g id="antenna-l" style="transform-origin: 60px 80px">
+            <path
+              d="M60 80 Q50 40 40 20"
+              fill="none"
+              stroke="#94a3b8"
+              stroke-width="4"
+              stroke-linecap="round"
+            />
+            <circle cx="40" cy="20" r="6" fill="#00d4ff" />
+          </g>
+          <g id="antenna-r" style="transform-origin: 180px 80px">
+            <path
+              d="M180 80 Q190 40 200 20"
+              fill="none"
+              stroke="#94a3b8"
+              stroke-width="4"
+              stroke-linecap="round"
+            />
+            <circle cx="200" cy="20" r="6" fill="#00d4ff" />
+          </g>
+          <rect x="20" y="130" width="15" height="50" rx="7" fill="#cbd5e1" />
+          <rect x="205" y="130" width="15" height="50" rx="7" fill="#cbd5e1" />
+          <rect x="40" y="80" width="160" height="150" rx="40" fill="#e0e6ed" />
+          <rect
+            x="55"
+            y="100"
+            width="130"
+            height="110"
+            rx="30"
+            fill="#1e293b"
+          />
+          <g class="eye-blink" style="transform-origin: 120px 140px">
+            <circle cx="90" cy="140" r="18" fill="#0f172a" />
+            <circle id="pupil-l" cx="90" cy="140" r="7" fill="#00d4ff" />
+            <circle cx="150" cy="140" r="18" fill="#0f172a" />
+            <circle id="pupil-r" cx="150" cy="140" r="7" fill="#00d4ff" />
+          </g>
+          <g id="mouth-container">
+            <path
+              id="mouth-wave"
+              d="M85 185 Q120 210 155 185"
+              fill="none"
+              stroke="#00d4ff"
+              stroke-width="3"
+              stroke-linecap="round"
+            ></path>
+          </g>
+        </svg>
+      </div>
+    </div>
+
+    <main class="auth-container">
+      <header class="logo-header">
+        <!-- Replace with your logo.png -->
+        <video
+          src="https://ik.imagekit.io/dking/grok_video_2026-01-13-12-17-00.mp4"
+          class="logo-img"
+          autoplay
+          loop
+          muted
+          playsinline
+          style="opacity: 80%"
+        ></video>
+        <h1>FOUNTAINS <span class="accent">AI CodeLab</span></h1>
+        <div class="early-access-banner">
+          <span class="early-access-badge">
+            <span class="fire-container">
+              <span class="fire fire-1"></span>
+              <span class="fire fire-2"></span>
+              <span class="fire fire-3"></span>
+              <span class="smoke smoke-1"></span>
+              <span class="smoke smoke-2"></span>
+            </span>
+            EARLY ACCESS
+          </span>
+        </div>
+        <p class="tagline">Master the Art of AI-Powered Development</p>
+        <div class="site-description">
+          <div class="description-section">
+            <p class="intro-text">
+              <span class="highlight-yellow"
+                >Welcome to a new way of learning</span
+              >
+              how to build on the web.
+            </p>
+          </div>
+
+          <div class="description-section">
+            <p>
+              <span class="highlight-cyan">At Fountains AI CodeLab</span>, we
+              don't just teach you how to write code — we teach you how to
+              <span class="highlight-yellow">think, plan, and build</span> with
+              AI as your coding partner.
+            </p>
+            <p>
+              Coding no longer has to feel
+              <span class="fade-text"
+                >confusing, overwhelming, or only meant for "experts."</span
+              >
+              Here, we break everything down into clear, simple steps that
+              anyone can follow.
+            </p>
+          </div>
+
+          <div class="description-section">
+            <p>
+              You will learn how to
+              <span class="highlight-cyan">use AI tools the right way</span> to
+              design websites, write clean code, fix errors, and bring your
+              ideas to life faster than ever.
+            </p>
+            <p>
+              Instead of struggling alone, you'll learn how to
+              <span class="highlight-yellow">talk to AI, guide it properly</span
+              >, and turn its responses into real, working projects.
+            </p>
+          </div>
+
+          <div class="description-section">
+            <p class="bold-text">
+              This is
+              <span class="highlight-orange"
+                >not about copying code blindly.</span
+              >
+            </p>
+            <p>
+              It's about understanding
+              <span class="highlight-cyan"
+                >what you are building, why you are building it,</span
+              >
+              and how AI helps you do it better.
+            </p>
+            <p>
+              From basic website structure to modern layouts, interactions, and
+              smart problem-solving,
+              <span class="highlight-yellow"
+                >we walk the journey together.</span
+              >
+            </p>
+          </div>
+
+          <div class="description-section hero-text">
+            <p>
+              You don't need prior coding experience.<br />You don't need to be
+              a "tech genius."
+            </p>
+            <p class="emphasis">
+              All you need is
+              <span class="highlight-yellow">curiosity, consistency,</span> and
+              the <span class="highlight-cyan">willingness to create.</span>
+            </p>
+          </div>
+
+          <div class="description-section">
+            <p>
+              By the end of this journey, you won't just say
+              <span class="italic-text">"I used AI to build a website"</span> —
+              you'll confidently say:
+            </p>
+            <p class="final-statement">
+              <span class="highlight-cyan"
+                >"I know how to code, and I know how to use AI to code
+                smarter."</span
+              >
+            </p>
+          </div>
+
+          <div class="description-section closing">
+            <p class="closing-text">
+              This is where
+              <span class="highlight-yellow">ideas stop being dreams</span> and
+              start becoming
+              <span class="highlight-orange">real projects.</span>
+            </p>
+          </div>
+        </div>
+        <div class="fee-badge">
+          <span class="fee-label">One-Time Access Fee</span>
+          <span class="fee-amount">₦2,000</span>
+        </div>
+      </header>
+
+      <div class="glass-card" id="form-box">
+        <!-- SECTION 1: LOGIN -->
+        <div id="login-section" class="form-content">
+          <h2>Welcome Back</h2>
+          <p>Login to continue your journey.</p>
+          <div class="input-group">
+            <input type="email" id="login-email" placeholder="Email Address" />
+          </div>
+          <div class="input-group pass-group">
+            <input type="password" id="login-password" placeholder="Password" />
+            <i
+              class="fa-solid fa-eye toggle-pass"
+              id="eye-login"
+              onclick="togglePass('login-password', 'eye-login')"
+            ></i>
+          </div>
+          <div style="text-align: right; margin-bottom: 15px">
+            <span
+              onclick="resetPassword()"
+              style="
+                color: var(--primary);
+                cursor: pointer;
+                font-size: 0.85rem;
+                font-weight: 600;
+              "
+              >Forgot Password?</span
+            >
+          </div>
+          <button id="login-btn" class="btn-primary" onclick="handleLogin()">
+            Login to Lab
+          </button>
+
+          <div class="divider"><span>OR</span></div>
+
+          <button class="btn-google" onclick="handleGoogleFlow()">
+            <img src="google.png " alt="Google" />
+            Continue with Google
+          </button>
+          <p class="switch-text">
+            New here?
+            <span onclick="toggleForm('register')">Create Account</span> or
+            <span onclick="toggleForm('request')">Request Access</span>
+          </p>
+        </div>
+
+        <!-- SECTION 2: REGISTER -->
+        <div id="register-section" class="form-content hidden">
+          <h2>Create Account</h2>
+          <p>Enter your details and mandatory key.</p>
+          <div class="input-group">
+            <input
+              type="text"
+              id="reg-username"
+              placeholder="Username / Nickname"
+            />
+          </div>
+          <div class="input-group">
+            <input type="email" id="reg-email" placeholder="Email Address" />
+          </div>
+          <div class="input-group pass-group">
+            <input type="password" id="reg-password" placeholder="Password" />
+            <i
+              class="fa-solid fa-eye toggle-pass"
+              id="eye-reg"
+              onclick="togglePass('reg-password', 'eye-reg')"
+            ></i>
+          </div>
+          <div class="input-group">
+            <input
+              type="text"
+              id="reg-key"
+              placeholder="Mandatory Key (FNT-XXXX)"
+            />
+          </div>
+          <button
+            id="reg-btn"
+            class="btn-primary"
+            onclick="handleRegistration()"
+          >
+            Verify & Register
+          </button>
+          <p class="switch-text">
+            Have an account? <span onclick="toggleForm('login')">Login</span>
+          </p>
+        </div>
+
+        <!-- SECTION 3: REQUEST ACCESS -->
+        <div id="request-section" class="form-content hidden">
+          <h2>Request Access Key</h2>
+          <p>
+            A one-time lab access fee of ₦2,000 is required. Send your email to
+            Admin via WhatsApp to receive your payment details and unique
+            passkey.
+          </p>
+          <div class="input-group">
+            <input
+              type="email"
+              id="request-email"
+              placeholder="Enter Email for Key"
+            />
+          </div>
+          <button id="wa-btn" class="btn-primary" onclick="sendToWhatsapp()">
+            Generate Receipt via WhatsApp
+          </button>
+          <p class="switch-text">
+            Got your key?
+            <span onclick="toggleForm('register')">Register Now</span>
+          </p>
+        </div>
+      </div>
+    </main>
+
+    <script src="script.js"></script>
+    <script
+      src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.11/dist/dotlottie-wc.js"
+      type="module"
+    ></script>
+
+    <!-- Loading Overlay for Network Delay -->
+    <div id="loading-overlay" class="loading-overlay" style="display: flex">
+      <div class="loading-container">
+        <dotlottie-wc
+          id="loading-lottie"
+          src="https://lottie.host/1fa5c7e2-a49c-4a87-9a51-c87732ba23d3/8Bq9bP6eJN.lottie"
+          style="width: 100%; max-width: 300px; height: auto"
+          autoplay
+          loop
+        ></dotlottie-wc>
+      </div>
+    </div>
+
+    <script>
+      // Loading overlay - shows during page load, disappears when complete
+      const loadingOverlay = document.getElementById("loading-overlay");
+
+      function hideLoadingOverlay() {
+        // Use both methods to ensure it disappears
+        loadingOverlay.style.display = "none";
+        loadingOverlay.classList.add("hidden");
+      }
+
+      // Hide when page finishes loading
+      window.addEventListener("load", function () {
+        setTimeout(hideLoadingOverlay, 200);
+      });
+
+      // Fallback for when page is already loaded
+      if (document.readyState === "complete") {
+        setTimeout(hideLoadingOverlay, 500);
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,1658 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Methodology | Fountains AI CodeLab</title>
+
+    <!-- SEO Meta Tags -->
+    <meta
+      name="description"
+      content="Fountains AI CodeLab: Master AI-powered software engineering. Learn to build professional websites using ChatGPT, Gemini, and Google AI Studio."
+    />
+    <meta
+      name="keywords"
+      content="AI coding, web development, software engineering, ChatGPT, Gemini Code Assist, Google AI Studio, coding lessons, Fountains AI"
+    />
+    <meta name="author" content="Fountains Data Technology" />
+    <meta
+      property="og:title"
+      content="Fountains AI CodeLab - The Era of AI Orchestration"
+    />
+    <meta
+      property="og:description"
+      content="Empowering the next generation of software engineers with Artificial Intelligence."
+    />
+    <meta
+      property="og:image"
+      content="https://ik.imagekit.io/dking/grok_video_2026-01-13-12-17-00.mp4"
+    />
+
+    <!-- Favicon -->
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="favicon/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="favicon/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="favicon/favicon-16x16.png"
+    />
+    <link rel="manifest" href="favicon/site.webmanifest" />
+
+    <link rel="stylesheet" href="methods.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-storage-compat.js"></script>
+  </head>
+  <body class="light-theme">
+    <!-- Loading Overlay for Network Delay - MUST BE FIRST ELEMENT -->
+    <div id="loading-overlay" class="loading-overlay" style="display: flex">
+      <div class="loading-container">
+        <p style="color: white; font-size: 1rem; letter-spacing: 0.1em">
+          Loading...
+        </p>
+      </div>
+    </div>
+
+    <div class="robot-background-container">
+      <div id="robot-scene">
+        <svg
+          viewBox="0 0 240 280"
+          xmlns="http://www.w3.org/2000/svg"
+          id="robot-svg"
+        >
+          <g id="antenna-l" style="transform-origin: 60px 80px">
+            <path
+              d="M60 80 Q50 40 40 20"
+              fill="none"
+              stroke="#94a3b8"
+              stroke-width="4"
+              stroke-linecap="round"
+            />
+            <circle cx="40" cy="20" r="6" fill="#00d4ff" />
+          </g>
+          <g id="antenna-r" style="transform-origin: 180px 80px">
+            <path
+              d="M180 80 Q190 40 200 20"
+              fill="none"
+              stroke="#94a3b8"
+              stroke-width="4"
+              stroke-linecap="round"
+            />
+            <circle cx="200" cy="20" r="6" fill="#00d4ff" />
+          </g>
+          <rect x="20" y="130" width="15" height="50" rx="7" fill="#cbd5e1" />
+          <rect x="205" y="130" width="15" height="50" rx="7" fill="#cbd5e1" />
+          <rect x="40" y="80" width="160" height="150" rx="40" fill="#e0e6ed" />
+          <rect
+            x="55"
+            y="100"
+            width="130"
+            height="110"
+            rx="30"
+            fill="#1e293b"
+          />
+          <g class="eye-blink" style="transform-origin: 120px 140px">
+            <circle cx="90" cy="140" r="18" fill="#0f172a" />
+            <circle id="pupil-l" cx="90" cy="140" r="7" fill="#00d4ff" />
+            <circle cx="150" cy="140" r="18" fill="#0f172a" />
+            <circle id="pupil-r" cx="150" cy="140" r="7" fill="#00d4ff" />
+          </g>
+          <g id="mouth-container">
+            <path
+              id="mouth-wave"
+              d="M85 185 Q120 210 155 185"
+              fill="none"
+              stroke="#00d4ff"
+              stroke-width="3"
+              stroke-linecap="round"
+            ></path>
+          </g>
+        </svg>
+      </div>
+    </div>
+    <nav class="navbar">
+      <div class="nav-container">
+        <a href="dashboard.html" class="brand">
+          <video
+            src="https://ik.imagekit.io/dking/grok_video_2026-01-13-12-17-00.mp4"
+            class="logo-img"
+            autoplay
+            loop
+            muted
+            playsinline
+          ></video>
+          <h2>
+            FOUNTAINS
+            <span class="wave-text"
+              ><span>A</span><span>I</span><span>&nbsp;</span><span>C</span
+              ><span>o</span><span>d</span><span>e</span><span>L</span
+              ><span>a</span><span>b</span></span
+            >
+          </h2>
+        </a>
+
+        <ul class="nav-links">
+          <li><a href="dashboard.html">Home</a></li>
+          <li><a href="lesson.html">Lessons</a></li>
+          <li><a href="methods.html" class="active">Methods</a></li>
+          <li><a href="projects.html">Projects</a></li>
+        </ul>
+
+        <div class="nav-btns">
+          <button id="themeToggle" class="icon-btn">🌓</button>
+
+          <!-- Dynamic Profile Link -->
+          <a
+            href="profile.html"
+            style="
+              text-decoration: none;
+              display: flex;
+              align-items: center;
+              gap: 10px;
+            "
+          >
+            <div class="profile-circle">
+              <img
+                id="nav-user-img"
+                src="https://api.dicebear.com/7.x/avataaars/svg?seed=Guest"
+                alt="Profile"
+                style="width: 100%; height: 100%; object-fit: cover"
+              />
+            </div>
+          </a>
+
+          <button class="hamburger" id="menuBtn">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Mobile Navigation -->
+    <div class="mobile-drawer" id="mobileMenu">
+      <div
+        style="
+          display: flex;
+          align-items: center;
+          gap: 15px;
+          margin-bottom: 10px;
+        "
+      >
+        <div
+          class="profile-circle"
+          style="width: 50px; height: 50px; border-color: var(--accent)"
+        >
+          <img
+            id="mobile-user-img"
+            src="https://api.dicebear.com/7.x/avataaars/svg?seed=Felix"
+            alt="Profile"
+          />
+        </div>
+        <span id="mobile-user-name" style="font-weight: 700; font-size: 1.2rem"
+          >Student</span
+        >
+      </div>
+      <a
+        href="dashboard.html"
+        style="
+          text-decoration: none;
+          color: var(--text-primary);
+          font-weight: 700;
+          font-size: 1.2rem;
+        "
+        >Home</a
+      >
+      <a
+        href="lesson.html"
+        style="
+          text-decoration: none;
+          color: var(--text-primary);
+          font-weight: 700;
+          font-size: 1.2rem;
+        "
+        >Lessons</a
+      >
+      <a
+        href="methods.html"
+        style="
+          text-decoration: none;
+          color: var(--text-primary);
+          font-weight: 700;
+          font-size: 1.2rem;
+        "
+        >Methods</a
+      >
+      <a
+        href="projects.html"
+        style="
+          text-decoration: none;
+          color: var(--text-primary);
+          font-weight: 700;
+          font-size: 1.2rem;
+        "
+        >Projects</a
+      >
+      <hr style="border: 0; border-top: 1px solid var(--border)" />
+      <button
+        id="themeToggleMobile"
+        class="icon-btn"
+        style="
+          margin: 0;
+          width: 100%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: 10px;
+          font-size: 1rem;
+          font-weight: 700;
+        "
+      >
+        <span>Switch Theme</span> 🌓
+      </button>
+    </div>
+
+    <main class="methods-wrapper">
+      <header class="methods-hero">
+        <div class="gsap-reveal">
+          <span class="method-badge">The Fountains Manifesto</span>
+          <h1>
+            The Science of <br /><span class="gradient-text"
+              >AI Orchestration</span
+            >
+          </h1>
+          <p>
+            AI is a powerful instrument, but you are the conductor. These are
+            the 7 core principles discovered at Fountains Data Technology for
+            building high-end software with artificial intelligence.
+          </p>
+        </div>
+      </header>
+
+      <h2 class="lesson-title">
+        Lesson 1: How to Work Smart With AI When Building Websites
+      </h2>
+      <p class="lesson-objective">
+        Learn the 7 core principles of AI-assisted development, from
+        architectural planning to human verification.
+      </p>
+
+      <section class="methods-grid" id="methods-container">
+        <div class="method-card gsap-reveal">
+          <div class="method-num">1.1</div>
+          <h3>The Architectural Blueprint (Think Before You Build)</h3>
+          <p>
+            Before opening any AI tool, you must be clear about what you want to
+            build. AI works best when you give it direction. If your idea is
+            vague, the result will also be vague.
+            <br /><br />
+            You should first decide: What the website is about, what pages it
+            will have, what users can do on the site, and how you want it to
+            look and feel. Think of this as drawing a plan before building a
+            house. Without a plan, everything becomes confusing.
+          </p>
+          <div class="expand-content">
+            <strong>Simple Tip:</strong> Write your idea down as if you are
+            explaining it to a junior developer or a friend. Explain the goal,
+            main features, and style. You can paste this explanation into the AI
+            later to help it understand your project clearly.
+          </div>
+          <button class="read-more-btn" onclick="openMethod(this)">
+            Read More
+          </button>
+        </div>
+
+        <div class="method-card gsap-reveal">
+          <div class="method-num">1.2</div>
+          <h3>Code Literacy & Command (Understand What You Are Using)</h3>
+          <p>
+            AI is powerful, but you must still understand basic coding. At
+            least, you should know what HTML does (structure), what CSS does
+            (design), and what JavaScript does (actions and behavior).
+            <br /><br />
+            When you understand these basics, you can ask better questions, fix
+            small issues yourself, and know when the AI makes a mistake. If you
+            don’t understand the code, you cannot control it—and you cannot
+            improve it.
+          </p>
+          <div class="expand-content">
+            <strong>Simple Tip:</strong> When AI gives you code, read it line by
+            line. If you see something confusing, ask the AI: “Explain this part
+            in simple terms.” Never copy and paste blindly. Learning happens
+            when you understand why the code works.
+          </div>
+          <button class="read-more-btn" onclick="openMethod(this)">
+            Read More
+          </button>
+        </div>
+
+        <div class="method-card gsap-reveal">
+          <div class="method-num">1.3</div>
+          <h3>The Multi-AI Approach (Use More Than One Helper)</h3>
+          <p>
+            No single AI tool is perfect at everything. Some are better at
+            design, some at logic, some at research. If one AI is struggling or
+            repeating the same mistake: Copy the code, take it to another AI,
+            and ask for a fresh solution. This is similar to asking a second
+            developer for help when you are stuck.
+          </p>
+          <div class="expand-content">
+            <strong>Simple Tip:</strong> If an AI keeps giving wrong answers,
+            don’t argue with it. Switch tools. A new AI often fixes the issue
+            faster.
+          </div>
+          <button class="read-more-btn" onclick="openMethod(this)">
+            Read More
+          </button>
+        </div>
+
+        <div class="method-card gsap-reveal">
+          <div class="method-num">1.4</div>
+          <h3>Iterative Resilience (Patience Is Part of the Skill)</h3>
+          <p>
+            AI-assisted development is not magic. Sometimes the code will break.
+            Sometimes the AI will misunderstand you. This is normal. The key
+            skill here is patience and correction. You improve results by giving
+            feedback, adjusting your instructions, and trying again. Building
+            with AI is a conversation, not a one-click action.
+          </p>
+          <div class="expand-content">
+            <strong>Simple Tip:</strong> When something doesn’t work, copy the
+            error message from your browser, paste it into the AI, and ask: “Why
+            is this happening and how do I fix it?”
+          </div>
+          <button class="read-more-btn" onclick="openMethod(this)">
+            Read More
+          </button>
+        </div>
+
+        <div class="method-card gsap-reveal">
+          <div class="method-num">1.5</div>
+          <h3>Clear Instructions Matter (Your Words Are Powerful)</h3>
+          <p>
+            AI responds directly to how you speak to it. Clear instructions
+            produce better results. Instead of saying “Make it better”, say
+            “Make the layout cleaner and easier to read on mobile phones.” The
+            clearer your words, the better the output. You can also tell the AI
+            what not to do.
+          </p>
+          <div class="expand-content">
+            <strong>Simple Tip:</strong> Always be specific. You can say things
+            like: “Keep the design simple”, “Use only basic HTML, CSS, and
+            JavaScript”, or “Avoid complicated layouts”. This helps the AI stay
+            focused and produce clean results.
+          </div>
+          <button class="read-more-btn" onclick="openMethod(this)">
+            Read More
+          </button>
+        </div>
+
+        <div class="method-card gsap-reveal">
+          <div class="method-num">1.6</div>
+          <h3>Build Small Pieces First (One Step at a Time)</h3>
+          <p>
+            Never ask an AI to build a full website at once. That usually leads
+            to messy and broken code. Instead, build small parts first (one
+            section at a time) then combine everything together. Examples of
+            small parts: A navigation bar, a button, a card section, a form.
+            Once each part works well, you connect them to form the full
+            website.
+          </p>
+          <div class="expand-content">
+            <strong>Simple Tip:</strong> Treat your website like LEGO blocks:
+            Build each block carefully, then assemble them. This approach gives
+            cleaner and more reliable results.
+          </div>
+          <button class="read-more-btn" onclick="openMethod(this)">
+            Read More
+          </button>
+        </div>
+
+        <div class="method-card gsap-reveal">
+          <div class="method-num">1.7</div>
+          <h3>Human Verification (You Are Still the Boss)</h3>
+          <p>
+            AI can write code that looks correct but loads slowly, breaks on
+            mobile, has security issues, or feels uncomfortable to use. That is
+            why you must always test your work yourself. Check mobile view,
+            different browsers, buttons, forms, speed, and smoothness. AI helps
+            you build faster, but you are responsible for quality.
+          </p>
+          <div class="expand-content">
+            <strong>Simple Tip:</strong> Always test your website manually. If
+            something feels wrong to you, it is wrong—even if the AI says it is
+            correct.
+          </div>
+          <button class="read-more-btn" onclick="openMethod(this)">
+            Read More
+          </button>
+        </div>
+      </section>
+
+      <section
+        class="gsap-reveal"
+        style="
+          max-width: 900px;
+          margin: 80px auto;
+          text-align: center;
+          padding: 50px;
+          background: var(--bg-alt);
+          border-radius: 25px;
+          border: 1px solid var(--border);
+          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+        "
+      >
+        <h3 style="font-size: 2rem; margin-bottom: 20px; font-weight: 800">
+          Final Note to Students
+        </h3>
+        <p
+          style="
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            font-style: italic;
+          "
+        >
+          "AI does not replace developers. It empowers developers who think
+          clearly, learn consistently, and stay patient. If you master these
+          principles, you are not just using AI—you are leading it."
+        </p>
+      </section>
+
+      <h2 class="lesson-title">
+        Lesson 2: Understanding the Web — How Websites Really Work
+      </h2>
+      <p class="lesson-objective">
+        Demystify the browser. Learn how HTML, CSS, and JavaScript work together
+        and how AI fits into this ecosystem.
+      </p>
+
+      <section class="methods-grid">
+        <div class="method-card gsap-reveal">
+          <div class="method-num">2.1</div>
+          <h3>What Happens When You Open a Website?</h3>
+          <p>
+            When you type a website address into your browser and press Enter,
+            several things happen very quickly: Your browser requests files, the
+            server sends them, and your browser displays them.
+          </p>
+          <div class="expand-content">
+            <strong>Simple Tip:</strong> A website is not magic. It is simply a
+            collection of files working together.
+          </div>
+          <button class="read-more-btn" onclick="openMethod(this)">
+            Read More
+          </button>
+        </div>
+
+        <div class="method-card gsap-reveal">
+          <div class="method-num">2.2</div>
+          <h3>The Three Core Building Blocks</h3>
+          <p>
+            Every modern website is built using three main technologies: HTML
+            (Structure), CSS (Design), and JavaScript (Behavior). AI does not
+            replace them—it helps you write them faster.
+          </p>
+          <div class="expand-content">
+            <strong>Simple Tip:</strong> Think of HTML as the walls, CSS as the
+            paint/decor, and JavaScript as the electricity/movement.
+          </div>
+          <button class="read-more-btn" onclick="openMethod(this)">
+            Read More
+          </button>
+        </div>
+
+        <div class="method-card gsap-reveal">
+          <div class="method-num">2.3</div>
+          <h3>How Browsers Read Your Website</h3>
+          <p>
+            Your browser reads files in a specific order: HTML first, CSS next,
+            and JavaScript last. Understanding this order helps you know where
+            problems come from.
+          </p>
+          <div class="expand-content">
+            <strong>Simple Tip:</strong> Broken HTML breaks the page structure.
+            Bad CSS affects the look. JavaScript errors stop the interactivity.
+          </div>
+          <button class="read-more-btn" onclick="openMethod(this)">
+            Read More
+          </button>
+        </div>
+
+        <div class="method-card gsap-reveal">
+          <div class="method-num">2.4</div>
+          <h3>Why Websites Have Multiple Files</h3>
+          <p>
+            You will often see files like index.html, style.css, and script.js.
+            This separation keeps code clean, makes debugging easier, and helps
+            AI generate better results.
+          </p>
+          <div class="expand-content">
+            <strong>Simple Tip:</strong> AI works best when each file has one
+            clear responsibility. Don't mix everything into one file.
+          </div>
+          <button class="read-more-btn" onclick="openMethod(this)">
+            Read More
+          </button>
+        </div>
+
+        <div class="method-card gsap-reveal">
+          <div class="method-num">2.5</div>
+          <h3>Where AI Fits Into Web Development</h3>
+          <p>
+            AI does not “build websites alone.” Instead, it writes HTML faster,
+            suggests design ideas, helps debug errors, and explains confusing
+            code.
+          </p>
+          <div class="expand-content">
+            <strong>Simple Tip:</strong> You are still the architect. AI is your
+            assistant.
+          </div>
+          <button class="read-more-btn" onclick="openMethod(this)">
+            Read More
+          </button>
+        </div>
+
+        <div class="method-card gsap-reveal">
+          <div class="method-num">2.6</div>
+          <h3>Why Understanding This Matters</h3>
+          <p>
+            If you understand what each file does and how browsers read code,
+            you can correct AI mistakes, improve output, and build more complex
+            projects.
+          </p>
+          <div class="expand-content">
+            <strong>Simple Tip:</strong> Without this understanding, AI becomes
+            confusing instead of helpful.
+          </div>
+          <button class="read-more-btn" onclick="openMethod(this)">
+            Read More
+          </button>
+        </div>
+
+        <div class="method-card gsap-reveal">
+          <div class="method-num">2.7</div>
+          <h3>Mini Task (Preparation for Lesson 3)</h3>
+          <p>
+            Open any simple website project. Identify the HTML, CSS, and
+            JavaScript files. Try to explain what each one does in your own
+            words.
+          </p>
+          <div class="expand-content">
+            <strong>Simple Tip:</strong> If you can do this, you are ready for
+            the next lesson.
+          </div>
+          <button class="read-more-btn" onclick="openMethod(this)">
+            Read More
+          </button>
+        </div>
+      </section>
+
+      <section
+        class="gsap-reveal"
+        style="
+          max-width: 900px;
+          margin: 80px auto;
+          text-align: center;
+          padding: 50px;
+          background: var(--bg-alt);
+          border-radius: 25px;
+          border: 1px solid var(--border);
+          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+        "
+      >
+        <h3 style="font-size: 2rem; margin-bottom: 20px; font-weight: 800">
+          Key Takeaway
+        </h3>
+        <p
+          style="
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            font-style: italic;
+          "
+        >
+          "Web development is about structure, design, and behavior. AI
+          accelerates the process, but understanding gives you control."
+        </p>
+      </section>
+
+      <h2 class="lesson-title">Lesson 3: Setting Up Your AI Workflow</h2>
+      <p class="lesson-objective">
+        Stop copy-pasting blindly. Set up a professional workflow with ChatGPT,
+        Google AI Studio, and Gemini Code Assist.
+      </p>
+
+      <section class="methods-grid">
+        <div class="method-card gsap-reveal">
+          <div class="method-num">3.1</div>
+          <h3>Sign In and Gather Your Tools</h3>
+          <p>
+            Before writing a single line of code, make sure you have the right
+            AI tools ready and signed in: ChatGPT, Gemini Code Assist, and
+            Google AI Studio.
+          </p>
+          <div class="expand-content">
+            <strong>Simple Tip:</strong> Think of this step as sharpening your
+            pencils before starting a drawing.
+          </div>
+          <button class="read-more-btn" onclick="openMethod(this)">
+            Read More
+          </button>
+        </div>
+
+        <div class="method-card gsap-reveal">
+          <div class="method-num">3.2</div>
+          <h3>Prepare Your Workspace</h3>
+          <p>
+            Having the right folder structure is critical. Create a main folder
+            with index.html, style.css, and script.js before asking AI to
+            generate code.
+          </p>
+          <div class="expand-content">
+            <strong>Simple Tip:</strong> Treat your workspace like a clean desk.
+            AI works better in an organized environment.
+          </div>
+          <button class="read-more-btn" onclick="openMethod(this)">
+            Read More
+          </button>
+        </div>
+
+        <div class="method-card gsap-reveal">
+          <div class="method-num">3.3</div>
+          <h3>Discuss Your Plan With ChatGPT</h3>
+          <p>
+            Start your conversation by describing your project goal, features,
+            and structure. Ask for suggestions to ensure your project starts on
+            solid ground.
+          </p>
+          <div class="expand-content">
+            <strong>Simple Tip:</strong> "I want to build a responsive
+            portfolio... Can you suggest how to organize sections?"
+          </div>
+          <button class="read-more-btn" onclick="openMethod(this)">
+            Read More
+          </button>
+        </div>
+
+        <div class="method-card gsap-reveal">
+          <div class="method-num">3.4</div>
+          <h3>Move to Google AI Studio for Execution</h3>
+          <p>
+            Switch to Google AI Studio for hands-on coding. Paste prompts, ask
+            for code step by step, and check suggestions carefully.
+          </p>
+          <div class="expand-content">
+            <strong>Simple Tip:</strong> Treat AI as a partner, not a magician.
+            The better you understand what you want, the better the output.
+          </div>
+          <button class="read-more-btn" onclick="openMethod(this)">
+            Read More
+          </button>
+        </div>
+
+        <div class="method-card gsap-reveal">
+          <div class="method-num">3.5</div>
+          <h3>Use Gemini Code Assist for Debugging</h3>
+          <p>
+            While coding in VS Code, use Gemini Code Assist to catch small
+            mistakes automatically and clean up AI-generated code.
+          </p>
+          <div class="expand-content">
+            <strong>Simple Tip:</strong> Think of Gemini as your extra set of
+            eyes, so you don’t waste time hunting for tiny mistakes.
+          </div>
+          <button class="read-more-btn" onclick="openMethod(this)">
+            Read More
+          </button>
+        </div>
+
+        <div class="method-card gsap-reveal">
+          <div class="method-num">3.6</div>
+          <h3>The Rhythm of AI Workflow</h3>
+          <p>
+            Plan → Execute → Check & Debug → Assemble. Do this one component at
+            a time. Don’t rush.
+          </p>
+          <div class="expand-content">
+            <strong>Simple Tip:</strong> AI works best when your instructions
+            are clear and focused.
+          </div>
+          <button class="read-more-btn" onclick="openMethod(this)">
+            Read More
+          </button>
+        </div>
+
+        <div class="method-card gsap-reveal">
+          <div class="method-num">3.7</div>
+          <h3>Why This Setup Works</h3>
+          <p>
+            You have clarity, support from multiple tools, easy debugging, and
+            you stay in control of the design.
+          </p>
+          <div class="expand-content">
+            <strong>Simple Tip:</strong> Orchestrate the tools rather than
+            letting the tools drive you.
+          </div>
+          <button class="read-more-btn" onclick="openMethod(this)">
+            Read More
+          </button>
+        </div>
+
+        <div class="method-card gsap-reveal">
+          <div class="method-num">3.8</div>
+          <h3>Mini Task</h3>
+          <p>
+            Set up a small demo project using this workflow. Create folders,
+            plan with ChatGPT, generate in AI Studio, debug with Gemini, and
+            test.
+          </p>
+          <div class="expand-content">
+            <strong>Simple Tip:</strong> Goal: Understand the rhythm of planning
+            → generating → debugging → assembling.
+          </div>
+          <button class="read-more-btn" onclick="openMethod(this)">
+            Read More
+          </button>
+        </div>
+      </section>
+
+      <section
+        class="gsap-reveal"
+        style="
+          max-width: 900px;
+          margin: 80px auto;
+          text-align: center;
+          padding: 50px;
+          background: var(--bg-alt);
+          border-radius: 25px;
+          border: 1px solid var(--border);
+          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+        "
+      >
+        <h3 style="font-size: 2rem; margin-bottom: 20px; font-weight: 800">
+          Key Takeaway
+        </h3>
+        <p
+          style="
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            font-style: italic;
+          "
+        >
+          "Workflow mantra: Plan. Generate. Debug. Assemble. Repeat."
+        </p>
+      </section>
+
+      <h2 class="lesson-title">Lesson 4: The Power of Keywords</h2>
+      <p class="lesson-objective">
+        Speak the language of AI. Learn the essential keywords that turn vague
+        requests into production-ready code.
+      </p>
+
+      <section class="methods-grid">
+        <div class="method-card gsap-reveal">
+          <div class="method-num">4.1</div>
+          <h3>Why Keywords Matter</h3>
+          <p>
+            AI doesn’t read your mind. It only knows what you tell it. Think of
+            prompting AI like giving directions: “Go north” is clear, “Go
+            somewhere” is confusing.
+          </p>
+          <div class="expand-content">
+            <strong>Simple Tip:</strong> If you want your website to be
+            mobile-friendly, clean-looking, and interactive, you need to say it.
+          </div>
+          <button class="read-more-btn" onclick="openMethod(this)">
+            Read More
+          </button>
+        </div>
+
+        <div class="method-card gsap-reveal">
+          <div class="method-num">4.2</div>
+          <h3>Must-Have Keywords for Web Projects</h3>
+          <p>
+            When prompting AI to generate website code, specific words help the
+            AI understand modern best practices.
+          </p>
+          <div class="expand-content">
+            <strong>Simple Tip:</strong> Combine keywords naturally. Example:
+            “Create a responsive, user-friendly, and clean landing page.”
+          </div>
+          <button class="read-more-btn" onclick="openMethod(this)">
+            Read More
+          </button>
+        </div>
+
+        <div class="method-card gsap-reveal">
+          <div class="method-num">4.3</div>
+          <h3>Optional Keywords to Enhance Your Prompts</h3>
+          <p>
+            These are extras that can make your AI output even better, like
+            "Consistent Colors" or "Reusable Components".
+          </p>
+          <div class="expand-content">
+            <strong>Simple Tip:</strong> Use 1–3 optional keywords per prompt.
+            Too many may confuse the AI.
+          </div>
+          <button class="read-more-btn" onclick="openMethod(this)">
+            Read More
+          </button>
+        </div>
+
+        <div class="method-card gsap-reveal">
+          <div class="method-num">4.4</div>
+          <h3>How to Structure Your Prompt</h3>
+          <p>
+            A simple formula: Goal + Style + Extras + Constraints. This gives AI
+            everything it needs to write professional code.
+          </p>
+          <div class="expand-content">
+            <strong>Simple Tip:</strong> Precise words = precise code.
+          </div>
+          <button class="read-more-btn" onclick="openMethod(this)">
+            Read More
+          </button>
+        </div>
+
+        <div class="method-card gsap-reveal">
+          <div class="method-num">4.5</div>
+          <h3>Human Touch — Why This Works</h3>
+          <p>
+            Even though AI is powerful, it only outputs what you describe. Your
+            understanding of the site improves as you refine prompts.
+          </p>
+          <div class="expand-content">
+            <strong>Simple Tip:</strong> Think of AI as a junior developer: it
+            can code fast, but you must guide it carefully.
+          </div>
+          <button class="read-more-btn" onclick="openMethod(this)">
+            Read More
+          </button>
+        </div>
+
+        <div class="method-card gsap-reveal">
+          <div class="method-num">4.6</div>
+          <h3>Mini Task</h3>
+          <p>
+            Pick a small website component, write a prompt including 3–5
+            keywords, ask AI to generate it, and review the code.
+          </p>
+          <div class="expand-content">
+            <strong>Simple Tip:</strong> Goal: Learn the rhythm of giving clear
+            instructions.
+          </div>
+          <button class="read-more-btn" onclick="openMethod(this)">
+            Read More
+          </button>
+        </div>
+      </section>
+
+      <section
+        class="gsap-reveal"
+        style="
+          max-width: 900px;
+          margin: 80px auto;
+          text-align: center;
+          padding: 50px;
+          background: var(--bg-alt);
+          border-radius: 25px;
+          border: 1px solid var(--border);
+          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+        "
+      >
+        <h3 style="font-size: 2rem; margin-bottom: 20px; font-weight: 800">
+          Key Takeaway
+        </h3>
+        <div
+          style="
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            text-align: left;
+            display: inline-block;
+            max-width: 100%;
+          "
+        >
+          <ul
+            style="
+              list-style-type: disc;
+              padding-left: 20px;
+              margin-bottom: 15px;
+            "
+          >
+            <li>Keywords are the language AI understands</li>
+            <li>Always include purpose, style, and constraints</li>
+            <li>Combine must-have keywords for functional, modern code</li>
+            <li>Review output — AI is your partner, not a replacement</li>
+          </ul>
+          <p
+            style="
+              font-style: italic;
+              font-weight: 700;
+              text-align: center;
+              color: var(--accent);
+            "
+          >
+            "Workflow mantra: Plan your prompt → Add keywords → Generate →
+            Review → Refine."
+          </p>
+        </div>
+      </section>
+
+      <h2 class="lesson-title">
+        Lesson 5: Essential Sections & Design Keywords
+      </h2>
+      <p class="lesson-objective">
+        Master the anatomy of a professional website and the design vocabulary
+        needed to prompt AI effectively.
+      </p>
+
+      <section class="methods-grid">
+        <div class="method-card gsap-reveal">
+          <div class="method-num">5.1</div>
+          <h3>Core Structural Sections</h3>
+          <p>
+            Every website needs a skeleton. The Navigation Bar, Hero Section,
+            and Footer are the non-negotiable elements that define structure and
+            navigation.
+          </p>
+          <div class="expand-content">
+            <strong>Simple Tip:</strong> Always start by defining these three
+            before adding inner content.
+          </div>
+          <button class="read-more-btn" onclick="openMethod(this)">
+            Read More
+          </button>
+        </div>
+
+        <div class="method-card gsap-reveal">
+          <div class="method-num">5.2</div>
+          <h3>Essential Content Sections</h3>
+          <p>
+            Once the structure is set, you need content blocks like About,
+            Services, Projects, and Testimonials to communicate value and build
+            trust.
+          </p>
+          <div class="expand-content">
+            <strong>Simple Tip:</strong> Use cards and grids for these sections
+            to keep information organized.
+          </div>
+          <button class="read-more-btn" onclick="openMethod(this)">
+            Read More
+          </button>
+        </div>
+
+        <div class="method-card gsap-reveal">
+          <div class="method-num">5.3</div>
+          <h3>Design Keywords to Guide AI</h3>
+          <p>
+            AI needs specific vocabulary to style your site. Words like
+            "Carousel", "Hover Effect", and "Glassmorphism" turn plain HTML into
+            modern designs.
+          </p>
+          <div class="expand-content">
+            <strong>Simple Tip:</strong> Combine a section name with 2-3 design
+            keywords for the best results.
+          </div>
+          <button class="read-more-btn" onclick="openMethod(this)">
+            Read More
+          </button>
+        </div>
+
+        <div class="method-card gsap-reveal">
+          <div class="method-num">5.4</div>
+          <h3>Why This Lesson Matters</h3>
+          <p>
+            "I want a beautiful website" is a bad prompt. Knowing specific
+            section names and design effects allows you to write precise prompts
+            that AI understands.
+          </p>
+          <div class="expand-content">
+            <strong>Simple Tip:</strong> Precise inputs = Professional outputs.
+          </div>
+          <button class="read-more-btn" onclick="openMethod(this)">
+            Read More
+          </button>
+        </div>
+
+        <div class="method-card gsap-reveal">
+          <div class="method-num">5.5</div>
+          <h3>Mini Task</h3>
+          <p>
+            Pick one section (e.g., Features), choose 2-3 design keywords, and
+            write a prompt to generate it. Review the code to see how AI applied
+            your keywords.
+          </p>
+          <div class="expand-content">
+            <strong>Goal:</strong> Practice combining structure + keywords.
+          </div>
+          <button class="read-more-btn" onclick="openMethod(this)">
+            Read More
+          </button>
+        </div>
+      </section>
+
+      <section
+        class="gsap-reveal"
+        style="
+          max-width: 900px;
+          margin: 80px auto;
+          text-align: center;
+          padding: 50px;
+          background: var(--bg-alt);
+          border-radius: 25px;
+          border: 1px solid var(--border);
+          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+        "
+      >
+        <h3 style="font-size: 2rem; margin-bottom: 20px; font-weight: 800">
+          Key Takeaway
+        </h3>
+        <div
+          style="
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            text-align: left;
+            display: inline-block;
+            max-width: 100%;
+          "
+        >
+          <ul
+            style="
+              list-style-type: disc;
+              padding-left: 20px;
+              margin-bottom: 15px;
+            "
+          >
+            <li>
+              Every website needs core sections (navbar, hero, footer, etc.)
+            </li>
+            <li>
+              AI will build better websites when you specify section + design
+              keyword
+            </li>
+            <li>
+              Using keywords like carousel, hover effect, shadow, responsive
+              ensures your site looks modern and interactive
+            </li>
+          </ul>
+          <p
+            style="
+              font-style: italic;
+              font-weight: 700;
+              text-align: center;
+              color: var(--accent);
+            "
+          >
+            "Think: I know what I need → tell AI precisely → review → refine"
+          </p>
+        </div>
+      </section>
+
+      <h2 class="lesson-title">
+        Lesson 6: Mastering Design Prompts & Visual Effects
+      </h2>
+      <p class="lesson-objective">
+        Move beyond "make it pretty". Learn the specific vocabulary for
+        carousels, shadows, animations, and responsive layouts to control AI
+        design output.
+      </p>
+
+      <section class="methods-grid">
+        <div class="method-card gsap-reveal">
+          <div class="method-num">6.1</div>
+          <h3>Understanding Design Prompting</h3>
+          <p>
+            You aren't just asking for "a website". You are asking for specific
+            sections, styles, and behaviors. Use the formula: Section + Layout +
+            Visual Effect + Interaction + Responsiveness.
+          </p>
+          <div class="expand-content">
+            <strong>Simple Tip:</strong> Be specific about how it looks and
+            behaves, not just what it is.
+          </div>
+          <button class="read-more-btn" onclick="openMethod(this)">
+            Read More
+          </button>
+        </div>
+
+        <div class="method-card gsap-reveal">
+          <div class="method-num">6.2</div>
+          <h3>Carousel / Slider</h3>
+          <p>
+            Carousels display multiple items in one space. Whether for images,
+            testimonials, or cards, they are a key modern design element.
+          </p>
+          <div class="expand-content">
+            <strong>Simple Tip:</strong> Keywords: auto-play, loop, smooth
+            transition, navigation arrows.
+          </div>
+          <button class="read-more-btn" onclick="openMethod(this)">
+            Read More
+          </button>
+        </div>
+
+        <div class="method-card gsap-reveal">
+          <div class="method-num">6.3</div>
+          <h3>Hover Effects</h3>
+          <p>
+            Hover effects happen when a user places the mouse on an element.
+            They signal interactivity through color changes, scaling, or
+            shadows.
+          </p>
+          <div class="expand-content">
+            <strong>Simple Tip:</strong> "Add a hover scale effect to cards for
+            a subtle zoom-in animation."
+          </div>
+          <button class="read-more-btn" onclick="openMethod(this)">
+            Read More
+          </button>
+        </div>
+
+        <div class="method-card gsap-reveal">
+          <div class="method-num">6.4</div>
+          <h3>Shadow Effects</h3>
+          <p>
+            Shadows give depth and make elements look clickable. Use soft
+            shadows for a clean look or deep shadows for emphasis.
+          </p>
+          <div class="expand-content">
+            <strong>Simple Tip:</strong> Keywords: box-shadow, soft shadow,
+            elevated card, depth effect.
+          </div>
+          <button class="read-more-btn" onclick="openMethod(this)">
+            Read More
+          </button>
+        </div>
+
+        <div class="method-card gsap-reveal">
+          <div class="method-num">6.5</div>
+          <h3>Animations & Transitions</h3>
+          <p>
+            Animations make websites feel alive. From fade-ins to slide-ins,
+            they guide the user's eye and smooth out interactions.
+          </p>
+          <div class="expand-content">
+            <strong>Simple Tip:</strong> Keywords: ease-in-out, smooth
+            animation, on scroll animation.
+          </div>
+          <button class="read-more-btn" onclick="openMethod(this)">
+            Read More
+          </button>
+        </div>
+
+        <div class="method-card gsap-reveal">
+          <div class="method-num">6.6</div>
+          <h3>Layout Keywords</h3>
+          <p>
+            Structure content properly with keywords like Grid Layout, Flexbox,
+            Centered Content, and Full-width Section.
+          </p>
+          <div class="expand-content">
+            <strong>Simple Tip:</strong> "Use a grid layout with proper spacing
+            and padding."
+          </div>
+          <button class="read-more-btn" onclick="openMethod(this)">
+            Read More
+          </button>
+        </div>
+
+        <div class="method-card gsap-reveal">
+          <div class="method-num">6.7</div>
+          <h3>Responsive & Mobile Design</h3>
+          <p>
+            Never forget responsiveness. Ensure your site works on all devices
+            by using keywords like mobile-first and adaptive layout.
+          </p>
+          <div class="expand-content">
+            <strong>Simple Tip:</strong> "Ensure the entire website is
+            responsive and mobile-first."
+          </div>
+          <button class="read-more-btn" onclick="openMethod(this)">
+            Read More
+          </button>
+        </div>
+
+        <div class="method-card gsap-reveal">
+          <div class="method-num">6.8</div>
+          <h3>Combining Everything</h3>
+          <p>
+            See how a professional prompt combines section, layout, effects, and
+            responsiveness into one clear instruction.
+          </p>
+          <div class="expand-content">
+            <strong>Simple Tip:</strong> This is how real developers prompt AI.
+          </div>
+          <button class="read-more-btn" onclick="openMethod(this)">
+            Read More
+          </button>
+        </div>
+
+        <div class="method-card gsap-reveal">
+          <div class="method-num">6.9</div>
+          <h3>Connection to Teaching Style</h3>
+          <p>
+            This lesson reinforces the workflow: Plan -> Structure -> Describe
+            -> Refine -> Debug. You are learning to think, not just copy.
+          </p>
+          <div class="expand-content">
+            <strong>Simple Tip:</strong> Students are learning how to think, not
+            just copy code.
+          </div>
+          <button class="read-more-btn" onclick="openMethod(this)">
+            Read More
+          </button>
+        </div>
+      </section>
+
+      <section
+        class="gsap-reveal"
+        style="
+          max-width: 900px;
+          margin: 80px auto;
+          text-align: center;
+          padding: 50px;
+          background: var(--bg-alt);
+          border-radius: 25px;
+          border: 1px solid var(--border);
+          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+        "
+      >
+        <h3 style="font-size: 2rem; margin-bottom: 20px; font-weight: 800">
+          Key Takeaway
+        </h3>
+        <div
+          style="
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            text-align: left;
+            display: inline-block;
+            max-width: 100%;
+          "
+        >
+          <ul
+            style="
+              list-style-type: disc;
+              padding-left: 20px;
+              margin-bottom: 15px;
+            "
+          >
+            <li>Good websites come from good prompts</li>
+            <li>
+              Always describe: Section, Design, Interaction, Responsiveness
+            </li>
+            <li>
+              Keywords like carousel, hover, shadow, animation guide AI
+              effectively
+            </li>
+          </ul>
+          <p
+            style="
+              font-style: italic;
+              font-weight: 700;
+              text-align: center;
+              color: var(--accent);
+            "
+          >
+            "Prompting is a skill, not magic."
+          </p>
+        </div>
+      </section>
+
+      <h2 class="lesson-title">Lesson 7: The Art of Professional Prompting</h2>
+      <p class="lesson-objective">
+        Prompting is project management, not magic. Learn the framework for
+        communicating with AI like a senior engineer.
+      </p>
+
+      <section class="methods-grid">
+        <div class="method-card gsap-reveal">
+          <div class="method-num">7.1</div>
+          <h3>The Core Truth About Prompting</h3>
+          <p>
+            AI is not a mind reader; it is a high-speed junior developer. If you
+            are vague, it guesses. If you are clear, it performs.
+          </p>
+          <div class="expand-content">
+            <strong>Simple Tip:</strong> Prompting is project management, not
+            magic.
+          </div>
+          <button class="read-more-btn" onclick="openMethod(this)">
+            Read More
+          </button>
+        </div>
+
+        <div class="method-card gsap-reveal">
+          <div class="method-num">7.2</div>
+          <h3>The Professional Prompting Framework</h3>
+          <p>
+            Every real-world prompt should follow a structure: Context, Scope,
+            Structure, Behavior, Responsiveness, and Output Expectation.
+          </p>
+          <div class="expand-content">
+            <strong>Simple Tip:</strong> Never ask for the whole project at
+            once.
+          </div>
+          <button class="read-more-btn" onclick="openMethod(this)">
+            Read More
+          </button>
+        </div>
+
+        <div class="method-card gsap-reveal">
+          <div class="method-num">7.3</div>
+          <h3>From Idea → Prompt (Real Example)</h3>
+          <p>
+            "I want a modern website" is not a prompt. Learn how to clarify your
+            idea into specific requirements before asking AI.
+          </p>
+          <div class="expand-content">
+            <strong>Simple Tip:</strong> Ask yourself: Who is it for? What is
+            the main action? What sections are needed?
+          </div>
+          <button class="read-more-btn" onclick="openMethod(this)">
+            Read More
+          </button>
+        </div>
+
+        <div class="method-card gsap-reveal">
+          <div class="method-num">7.4</div>
+          <h3>Prompting in Small, Powerful Steps</h3>
+          <p>
+            Never ask for an entire system at once. Follow the flow: Layout →
+            Styling → Interaction → Logic → Refinement.
+          </p>
+          <div class="expand-content">
+            <strong>Simple Tip:</strong> This is how real products are built.
+          </div>
+          <button class="read-more-btn" onclick="openMethod(this)">
+            Read More
+          </button>
+        </div>
+
+        <div class="method-card gsap-reveal">
+          <div class="method-num">7.5</div>
+          <h3>Asking AI the Right Way</h3>
+          <p>
+            Don't say "This code is bad." Provide feedback, errors, and expected
+            behavior. You are leading the AI.
+          </p>
+          <div class="expand-content">
+            <strong>Simple Tip:</strong> Treat AI like a junior developer you
+            are mentoring.
+          </div>
+          <button class="read-more-btn" onclick="openMethod(this)">
+            Read More
+          </button>
+        </div>
+
+        <div class="method-card gsap-reveal">
+          <div class="method-num">7.6</div>
+          <h3>Iterating With AI</h3>
+          <p>
+            Prompting is a conversation. Build the navbar, then make it sticky,
+            then improve spacing. Each prompt builds on the previous one.
+          </p>
+          <div class="expand-content">
+            <strong>Simple Tip:</strong> Never restart unless necessary.
+          </div>
+          <button class="read-more-btn" onclick="openMethod(this)">
+            Read More
+          </button>
+        </div>
+
+        <div class="method-card gsap-reveal">
+          <div class="method-num">7.7</div>
+          <h3>Using Multiple AI Tools Together</h3>
+          <p>
+            Professionals use systems. ChatGPT for planning, Google AI Studio
+            for logic, and Gemini Code Assist for debugging.
+          </p>
+          <div class="expand-content">
+            <strong>Simple Tip:</strong> Each tool has a role.
+          </div>
+          <button class="read-more-btn" onclick="openMethod(this)">
+            Read More
+          </button>
+        </div>
+
+        <div class="method-card gsap-reveal">
+          <div class="method-num">7.8</div>
+          <h3>Common Prompting Mistakes</h3>
+          <p>
+            Avoid asking for too much at once, ignoring responsiveness, or
+            copy-pasting without understanding.
+          </p>
+          <div class="expand-content">
+            <strong>Simple Tip:</strong> AI is powerful, but undisciplined use
+            creates fragile code.
+          </div>
+          <button class="read-more-btn" onclick="openMethod(this)">
+            Read More
+          </button>
+        </div>
+
+        <div class="method-card gsap-reveal">
+          <div class="method-num">7.9</div>
+          <h3>Final Example: End-to-End Real Prompt</h3>
+          <p>
+            See a complete, real-world prompt that combines everything we've
+            learned into one instruction.
+          </p>
+          <div class="expand-content">
+            <strong>Simple Tip:</strong> This is how developers communicate with
+            AI.
+          </div>
+          <button class="read-more-btn" onclick="openMethod(this)">
+            Read More
+          </button>
+        </div>
+
+        <div class="method-card gsap-reveal">
+          <div class="method-num">7.10</div>
+          <h3>Final Mindset Shift</h3>
+          <p>
+            AI does not build websites. You do. AI speeds you up, but you decide
+            structure and judge quality.
+          </p>
+          <div class="expand-content">
+            <strong>Simple Tip:</strong> If you can explain it clearly, you can
+            build anything.
+          </div>
+          <button class="read-more-btn" onclick="openMethod(this)">
+            Read More
+          </button>
+        </div>
+      </section>
+
+      <section
+        class="gsap-reveal"
+        style="
+          max-width: 900px;
+          margin: 80px auto;
+          text-align: center;
+          padding: 50px;
+          background: var(--bg-alt);
+          border-radius: 25px;
+          border: 1px solid var(--border);
+          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+        "
+      >
+        <h3 style="font-size: 2rem; margin-bottom: 20px; font-weight: 800">
+          Key Takeaway
+        </h3>
+        <div
+          style="
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            text-align: left;
+            display: inline-block;
+            max-width: 100%;
+          "
+        >
+          <ul
+            style="
+              list-style-type: disc;
+              padding-left: 20px;
+              margin-bottom: 15px;
+            "
+          >
+            <li>Prompting is a skill</li>
+            <li>Clear prompts create clean code</li>
+            <li>Build in small steps</li>
+            <li>Lead the AI like a junior developer</li>
+            <li>Always stay in control</li>
+          </ul>
+          <p
+            style="
+              font-style: italic;
+              font-weight: 700;
+              text-align: center;
+              color: var(--accent);
+            "
+          >
+            "If you can explain it clearly, you can build anything."
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="main-footer">
+      <div class="footer-content">
+        <div class="footer-col">
+          <div class="brand" style="margin-bottom: 20px">
+            <video
+              src="https://ik.imagekit.io/dking/grok_video_2026-01-13-12-17-00.mp4"
+              class="logo-img"
+              style="width: 40px; height: 40px"
+              autoplay
+              loop
+              muted
+              playsinline
+            ></video>
+            <h3 style="font-size: 1.2rem; font-weight: 800">
+              FOUNTAINS <span style="color: var(--accent)">AI</span>
+            </h3>
+          </div>
+          <p
+            style="
+              color: var(--text-secondary);
+              font-size: 0.9rem;
+              line-height: 1.6;
+            "
+          >
+            Empowering the next generation of software engineers with Artificial
+            Intelligence.
+          </p>
+        </div>
+        <div class="footer-col">
+          <h4>Platform</h4>
+          <div class="footer-links">
+            <a href="dashboard.html">Home Dashboard</a>
+            <a href="lesson.html">Curriculum & Labs</a>
+            <a href="methods.html">The Methodology</a>
+            <a href="projects.html">Project Showcase</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Connect</h4>
+          <div class="footer-links">
+            <a href="#">Twitter / X</a>
+            <a href="#">LinkedIn</a>
+            <a href="#">GitHub Repository</a>
+            <a href="#">Discord Community</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        &copy; 2026 Fountains Data Technology. All rights reserved.
+      </div>
+    </footer>
+    <button id="backToTop" class="back-to-top">↑</button>
+
+    <!-- FULL SCREEN MODAL -->
+    <div class="method-modal" id="methodModal">
+      <div class="modal-content">
+        <button
+          onclick="closeMethod()"
+          style="
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: #fee2e2;
+            color: #ef4444;
+            border: none;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            font-weight: 800;
+            cursor: pointer;
+            font-size: 1.2rem;
+            z-index: 20;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          "
+        >
+          ✕
+        </button>
+        <div
+          id="modal-body-content"
+          style="max-width: 800px; margin: 0 auto; padding-top: 40px"
+        >
+          <!-- Content Injected Here -->
+        </div>
+      </div>
+    </div>
+
+    <script src="methods.js"></script>
+    <script
+      src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.11/dist/dotlottie-wc.js"
+      type="module"
+    ></script>
+
+    <script>
+      // Loading overlay management - shows on initial load and on slow networks
+      const loadingOverlay = document.getElementById("loading-overlay");
+
+      // Hide loader when page is fully loaded
+      function hideLoadingOverlay() {
+        loadingOverlay.classList.add("hidden");
+      }
+
+      // Hide when page finishes loading
+      window.addEventListener("load", function () {
+        setTimeout(hideLoadingOverlay, 200);
+      });
+
+      // Fallback for when page is already loaded
+      if (document.readyState === "complete") {
+        setTimeout(hideLoadingOverlay, 500);
+      }
+    </script>
+  </body>
+</html>

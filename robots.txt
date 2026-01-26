@@ -1,0 +1,13 @@
+# Instructions for all web crawlers (user-agents)
+User-agent: *
+
+# Allow full access to the site by default
+Allow: /
+
+# Disallow crawling of private/user-specific pages to save crawl budget
+Disallow: /dashboard.html
+Disallow: /projects.html
+Disallow: /profile.html
+
+# Location of the sitemap
+Sitemap: https://www.yourdomain.com/sitemap.xml

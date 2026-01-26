@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Curriculum | Fountains AI CodeLab</title>
+
+    <!-- Favicon -->
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="favicon/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="favicon/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="favicon/favicon-16x16.png"
+    />
+    <link rel="manifest" href="favicon/site.webmanifest" />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&family=Fira+Code:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <link rel="stylesheet" href="lessons.css" />
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-storage-compat.js"></script>
+
+    <style></style>
+  </head>
+  <body class="light-theme">
+    <!-- Loading Overlay for Network Delay - MUST BE FIRST ELEMENT -->
+    <div id="loading-overlay" class="loading-overlay" style="display: flex">
+      <div class="loading-container">
+        <p style="color: white; font-size: 1rem; letter-spacing: 0.1em">
+          Loading...
+        </p>
+      </div>
+    </div>
+
+    <div class="robot-background-container">
+      <div id="robot-scene">
+        <svg
+          viewBox="0 0 240 280"
+          xmlns="http://www.w3.org/2000/svg"
+          id="robot-svg"
+        >
+          <g id="antenna-l" style="transform-origin: 60px 80px">
+            <path
+              d="M60 80 Q50 40 40 20"
+              fill="none"
+              stroke="#94a3b8"
+              stroke-width="4"
+              stroke-linecap="round"
+            />
+            <circle cx="40" cy="20" r="6" fill="#00d4ff" />
+          </g>
+          <g id="antenna-r" style="transform-origin: 180px 80px">
+            <path
+              d="M180 80 Q190 40 200 20"
+              fill="none"
+              stroke="#94a3b8"
+              stroke-width="4"
+              stroke-linecap="round"
+            />
+            <circle cx="200" cy="20" r="6" fill="#00d4ff" />
+          </g>
+          <rect x="20" y="130" width="15" height="50" rx="7" fill="#cbd5e1" />
+          <rect x="205" y="130" width="15" height="50" rx="7" fill="#cbd5e1" />
+          <rect x="40" y="80" width="160" height="150" rx="40" fill="#e0e6ed" />
+          <rect
+            x="55"
+            y="100"
+            width="130"
+            height="110"
+            rx="30"
+            fill="#1e293b"
+          />
+          <g class="eye-blink" style="transform-origin: 120px 140px">
+            <circle cx="90" cy="140" r="18" fill="#0f172a" />
+            <circle id="pupil-l" cx="90" cy="140" r="7" fill="#00d4ff" />
+            <circle cx="150" cy="140" r="18" fill="#0f172a" />
+            <circle id="pupil-r" cx="150" cy="140" r="7" fill="#00d4ff" />
+          </g>
+          <g id="mouth-container">
+            <path
+              id="mouth-wave"
+              d="M85 185 Q120 185 155 185"
+              fill="none"
+              stroke="#00d4ff"
+              stroke-width="3"
+              stroke-linecap="round"
+            >
+              <animate
+                attributeName="d"
+                values="M85 185 Q120 185 155 185; M85 185 Q120 175 155 185; M85 185 Q120 185 155 185"
+                dur="2s"
+                repeatCount="indefinite"
+              />
+            </path>
+          </g>
+        </svg>
+      </div>
+    </div>
+    <nav class="navbar">
+      <div class="nav-container">
+        <a href="dashboard.html" class="brand">
+          <video
+            src="https://ik.imagekit.io/dking/grok_video_2026-01-13-12-17-00.mp4"
+            class="logo-img"
+            autoplay
+            loop
+            muted
+            playsinline
+          ></video>
+          <h2>
+            FOUNTAINS
+            <span class="wave-text"
+              ><span>A</span><span>I</span><span>&nbsp;</span><span>C</span
+              ><span>o</span><span>d</span><span>e</span><span>L</span
+              ><span>a</span><span>b</span></span
+            >
+          </h2>
+        </a>
+
+        <ul class="nav-links">
+          <li><a href="dashboard.html">Home</a></li>
+          <li><a href="lesson.html" class="active">Lessons</a></li>
+          <li><a href="methods.html">Methods</a></li>
+          <li><a href="projects.html">Projects</a></li>
+        </ul>
+
+        <div class="nav-btns">
+          <button id="themeToggle" class="icon-btn">🌓</button>
+
+          <!-- Dynamic Profile Link -->
+          <a
+            href="profile.html"
+            style="
+              text-decoration: none;
+              display: flex;
+              align-items: center;
+              gap: 10px;
+            "
+          >
+            <div class="profile-circle">
+              <img
+                id="nav-user-img"
+                src="https://api.dicebear.com/7.x/avataaars/svg?seed=Guest"
+                alt="Profile"
+                style="width: 100%; height: 100%; object-fit: cover"
+              />
+            </div>
+          </a>
+
+          <button class="hamburger" id="menuBtn">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Mobile Navigation -->
+    <div class="mobile-drawer" id="mobileMenu">
+      <div
+        style="
+          display: flex;
+          align-items: center;
+          gap: 15px;
+          margin-bottom: 10px;
+        "
+      >
+        <div
+          class="profile-circle"
+          style="width: 50px; height: 50px; border-color: var(--accent)"
+        >
+          <img
+            id="mobile-user-img"
+            src="https://api.dicebear.com/7.x/avataaars/svg?seed=Guest"
+            alt="Profile"
+            onerror="
+              this.src =
+                'https://api.dicebear.com/7.x/avataaars/svg?seed=fallback'
+            "
+          />
+        </div>
+        <span id="mobile-user-name" style="font-weight: 700; font-size: 1.2rem"
+          >Student</span
+        >
+      </div>
+      <a
+        href="dashboard.html"
+        style="
+          text-decoration: none;
+          color: var(--text-primary);
+          font-weight: 700;
+          font-size: 1.2rem;
+        "
+        >Home</a
+      >
+      <a
+        href="lesson.html"
+        style="
+          text-decoration: none;
+          color: var(--text-primary);
+          font-weight: 700;
+          font-size: 1.2rem;
+        "
+        >Lessons</a
+      >
+      <a
+        href="methods.html"
+        style="
+          text-decoration: none;
+          color: var(--text-primary);
+          font-weight: 700;
+          font-size: 1.2rem;
+        "
+        >Methods</a
+      >
+      <a
+        href="projects.html"
+        style="
+          text-decoration: none;
+          color: var(--text-primary);
+          font-weight: 700;
+          font-size: 1.2rem;
+        "
+        >Projects</a
+      >
+      <hr style="border: 0; border-top: 1px solid var(--border)" />
+      <button
+        id="themeToggleMobile"
+        class="icon-btn"
+        style="
+          margin: 0;
+          width: 100%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: 10px;
+          font-size: 1rem;
+          font-weight: 700;
+        "
+      >
+        <span>Switch Theme</span> 🌓
+      </button>
+    </div>
+
+    <header class="syllabus-head">
+      <h1 class="gsap-reveal">
+        Academic <span class="gradient-text">Curriculum</span>
+      </h1>
+      <p class="gsap-reveal" style="opacity: 0.6; line-height: 1.6">
+        Follow the step-by-step masterclass modules. Each lesson contains a
+        visual guide, the project architecture, and the exact AI prompt required
+        to execute the task.
+      </p>
+    </header>
+
+    <main class="curriculum-container" id="lesson-list">
+      <!-- TABS WILL BE INJECTED BY JAVASCRIPT -->
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="main-footer">
+      <div class="footer-content">
+        <div class="footer-col">
+          <div class="brand" style="margin-bottom: 20px">
+            <video
+              src="https://ik.imagekit.io/dking/grok_video_2026-01-13-12-17-00.mp4"
+              class="logo-img"
+              style="width: 40px; height: 40px"
+              autoplay
+              loop
+              muted
+              playsinline
+            ></video>
+            <h3 style="font-size: 1.2rem; font-weight: 800">
+              FOUNTAINS <span style="color: var(--accent)">AI</span>
+            </h3>
+          </div>
+          <p
+            style="
+              color: var(--text-secondary);
+              font-size: 0.9rem;
+              line-height: 1.6;
+            "
+          >
+            Empowering the next generation of software engineers with Artificial
+            Intelligence.
+          </p>
+        </div>
+        <div class="footer-col">
+          <h4>Platform</h4>
+          <div class="footer-links">
+            <a href="dashboard.html">Home Dashboard</a>
+            <a href="lesson.html">Curriculum & Labs</a>
+            <a href="methods.html">The Methodology</a>
+            <a href="projects.html">Project Showcase</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Connect</h4>
+          <div class="footer-links">
+            <a href="#">Twitter / X</a>
+            <a href="#">LinkedIn</a>
+            <a href="#">GitHub Repository</a>
+            <a href="#">Discord Community</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        &copy; 2026 Fountains Data Technology. All rights reserved.
+      </div>
+    </footer>
+    <button id="backToTop" class="back-to-top">↑</button>
+
+    <script src="lessons.js"></script>
+    <script
+      src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.11/dist/dotlottie-wc.js"
+      type="module"
+    ></script>
+
+    <script>
+      // Loading overlay - shows during page load, disappears when complete
+      const loadingOverlay = document.getElementById("loading-overlay");
+
+      function hideLoadingOverlay() {
+        // Use both methods to ensure it disappears
+        loadingOverlay.style.display = "none";
+        loadingOverlay.classList.add("hidden");
+      }
+
+      // Hide when page finishes loading
+      window.addEventListener("load", function () {
+        setTimeout(hideLoadingOverlay, 200);
+      });
+
+      // Fallback for when page is already loaded
+      if (document.readyState === "complete") {
+        setTimeout(hideLoadingOverlay, 500);
+      }
+    </script>
+  </body>
+</html>
